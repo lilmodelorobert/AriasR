@@ -45,7 +45,12 @@ async function searchWeather() {
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`);
     const data = await promise.json();
     console.log(data);
-    
+
+    loc.innerText = data.name;
+    tempF.innerText = data.main.temp;
+    desc.innerText = data.weather[0].description;
+    tempMin.innerText = data.main.temp_min;
+    tempMax.innerText = data.main.temp_max;
 }
 searchBtn.addEventListener("click", function (event) {
         searchWeather();
@@ -53,6 +58,7 @@ searchBtn.addEventListener("click", function (event) {
 }
 );
 async function fiveDay(){
+    
     cityName = clientSearch.value.toLowerCase();
     const promise= await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`);
     const data = await promise.json();
@@ -79,6 +85,7 @@ async function fiveDay(){
     High = Math.round(data.list[24].main.temp_max);
     Low = Math.round(data.list[24].main.temp_min);
     hnl3.innerText = `↑${High}° ↓${Low}°`;
+
 
     console.log(data.list[32].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[32].main.temp_max);
