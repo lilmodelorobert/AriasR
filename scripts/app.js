@@ -1,10 +1,29 @@
 const apiKey = "d7aa370d43983f7ec8a73ae3b04a9057";
+
 let clientSearch = document.getElementById("clientSearch");
 let displayCity = document.getElementById("displayCity");
 let displayTemp = document.getElementById("displayTemp");
-let enterKey;
+let currentWeather = document.getElementById("currentWeather");
+let displayCountry = document.getElementById("displayCountry");
 let  High;
 let Low;
+let lat;
+let lon;
+let cityName;
+
+//5 day forecast weather icon doms
+let weatherIcon1 = document.getElementById ("weatherIcon1")
+
+let weatherIcon2 = document.getElementById ("weatherIcon2")
+
+let weatherIcon3 = document.getElementById ("weatherIcon3")
+
+let weatherIcon4 = document.getElementById ("weatherIcon4")
+
+let weatherIcon5 = document.getElementById ("weatherIcon5")
+
+//end of weather icon doms
+
 // let High1;
 // let Low1;
 // let High2;
@@ -16,47 +35,48 @@ let Low;
 
 
 
-
-
-
-
-
-
-
-
-
-
 //geolocation
 navigator.geolocation.getCurrentPosition(success, errorFunc);
 //if Success else errorFunc
 function success(position) {
     console.log("lat" + position.coords.latitude);
     console.log("long" + position.coords.longitude);
+
+    lat = position.coords.latitude;
+    lon= position.coords.longitude;
+    
 }
 function errorFunc(error) {
     console.log(error.message);
 }
 //end of geo location
 
-let cityName;
 
+
+//search weather + api call for main weather 
 async function searchWeather() {
     cityName = clientSearch.value.toLowerCase();
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`);
     const data = await promise.json();
     console.log(data);
 
-    loc.innerText = data.name;
-    tempF.innerText = data.main.temp;
-    desc.innerText = data.weather[0].description;
-    tempMin.innerText = data.main.temp_min;
-    tempMax.innerText = data.main.temp_max;
+//country code visible
+    console.log(`Location: ${data.name}, ${data.sys.country}`);
+    displayCountry.innerText = `${data.name}, ${data.sys.country}`;
+    // end of visible code
+    
+    console.log(`Currently: ${data.weather[0].main}`);
+
+    currentWeather.innerText = `Currently: ${data.weather[0].main}`;
+
+    displayTemp.innerText = `Current weather: ${Math.round(data.main.temp)}° `;
 }
 searchBtn.addEventListener("click", function (event) {
         searchWeather();
         fiveDay();
 }
 );
+//start of five day
 async function fiveDay(){
     
     cityName = clientSearch.value.toLowerCase();
@@ -86,13 +106,12 @@ async function fiveDay(){
     Low = Math.round(data.list[24].main.temp_min);
     hnl3.innerText = `↑${High}° ↓${Low}°`;
 
-
     console.log(data.list[32].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[32].main.temp_max);
     Low = Math.round(data.list[32].main.temp_min);
     hnl4.innerText = `↑${High}° ↓${Low}°`;
 
 }
-
+// end of five day
 
 
