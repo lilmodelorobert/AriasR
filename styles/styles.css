@@ -1,8 +1,53 @@
 body{
-background-color: #CCBE72; 
-background-color: #1C1C34 ;
-background-color: #A4BDED ;
-background-color: #C3D1EC ;
-background-color: #6D7990;
-background-color: #3A4252;
+    background-color: #CCBE72;
+}
+
+#search{
+    justify-content:left;
+    border-radius:25px;
+    border: 10px solid #A299C8;
+    background-color: #120A33 ;
+    padding: 20px;
+    width: 551px;
+    height: 359px;
+}
+
+div{
+    color: ghostwhite
+}
+#clientSearch{
+justify-content: center;
+width: 453px;
+height: 45px;
+border-radius: 9px;
+}
+
+#displayCity{
+font-weight: bold;
+font-size: 80px;
+}
+#displayCountry{
+    font-weight: bold;
+    font-size: 80px;
+}
+#rightBox{
+    justify-content:left;
+    border-radius:25px;
+    border: 10px solid #A299C8;
+    background-color: #120A33 ;
+    padding: 20px;
+    width: 730px;
+    height: 359px;
+}
+#BottomFive{
+    border-radius:25px;
+    border: 10px solid #A299C8;
+    background-color: #120A33 ;
+    padding: 20px;
+    width: 1320px;
+    height: 540px;
+}
+#displayTemp{
+    font-weight: bold;
+    font-size: 100px;
 }

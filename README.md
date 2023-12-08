@@ -1,4 +1,3 @@
-# AriasR
 
 
 things completed: 

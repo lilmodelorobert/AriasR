@@ -11,16 +11,25 @@ let lat;
 let lon;
 let cityName;
 
+
+
+
+
 //5 day forecast weather icon doms
 let weatherIcon1 = document.getElementById ("weatherIcon1")
 
+
 let weatherIcon2 = document.getElementById ("weatherIcon2")
+
 
 let weatherIcon3 = document.getElementById ("weatherIcon3")
 
+
 let weatherIcon4 = document.getElementById ("weatherIcon4")
 
+
 let weatherIcon5 = document.getElementById ("weatherIcon5")
+
 
 //end of weather icon doms
 
@@ -34,7 +43,6 @@ let weatherIcon5 = document.getElementById ("weatherIcon5")
 // let High4
 
 
-
 //geolocation
 navigator.geolocation.getCurrentPosition(success, errorFunc);
 //if Success else errorFunc
@@ -44,6 +52,7 @@ function success(position) {
 
     lat = position.coords.latitude;
     lon= position.coords.longitude;
+    
     
 }
 function errorFunc(error) {
@@ -67,9 +76,9 @@ async function searchWeather() {
     
     console.log(`Currently: ${data.weather[0].main}`);
 
-    currentWeather.innerText = `Currently: ${data.weather[0].main}`;
+    currentWeather.innerText = `Currently: ${data.weather[0].description}`;
 
-    displayTemp.innerText = `Current weather: ${Math.round(data.main.temp)}° `;
+    displayTemp.innerText = ` ${Math.round(data.main.temp)}° `;
 }
 searchBtn.addEventListener("click", function (event) {
         searchWeather();
@@ -114,4 +123,13 @@ async function fiveDay(){
 }
 // end of five day
 
+// //weather icon
+// if(data.weather[0].description == "clear sky"){
+//     weatherIcon.src = "../assets/sun (1).png";
+// }else if (data.weather[0].description == "few clouds"){
+//     weatherIcon.src = "../assets/cloud-sun.png";
+// }else if (data.weather[0].description == "scattered clouds" || data.weather[0].description == "broken clouds"){
+//     weatherIcon.src = "../assets/cloud.png";
+// }
+// else if (data.weather[0].discr)
 
