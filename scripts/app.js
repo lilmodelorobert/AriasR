@@ -10,6 +10,9 @@ let Low;
 let lat;
 let lon;
 let cityName;
+let currentWeatherIcon = document.getElementById
+let dayNames=[];
+
 
 day1Date = document.getElementById("day1Date");
 day2Date = document.getElementById("day2Date");
@@ -77,11 +80,11 @@ async function searchWeather() {
     displayCountry.innerText = `${data.name}, ${data.sys.country}`;
     // end of visible code
 
-    console.log(`Currently: ${data.weather[0].main}`);
+    currentWeatherIcon.src = data.weather[0].main
 
-    currentWeather.innerText = `Currently: ${data.weather[0].description}`;
-
+    currentWeather.innerText = ` ${data.weather[0].description}`;
     displayTemp.innerText = ` ${Math.round(data.main.temp)}° `;
+
 }
 searchBtn.addEventListener("click", function (event) {
     searchWeather();
@@ -91,69 +94,110 @@ searchBtn.addEventListener("click", function (event) {
 //start of five day
 async function fiveDay() {
 
+    dayNames = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+
     cityName = clientSearch.value.toLowerCase();
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`);
     const data = await promise.json();
 
-    day1Date.innerText = data.list[0].dt_txt;
+
+    let day1 = new Date(data.list[0].dt_txt);
+    let day1Day = day1.getDay();
+    day1Date.innerText = dayNames[day1Day];
     console.log(data.list[0].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[0].main.temp_max);
     Low = Math.round(data.list[0].main.temp_min);
     hnl0.innerText = `↑${High}° ↓${Low}°`;
 
-    day2Date.innerText = data.list[8].dt_txt;
+    let day2 = new Date(data.list[8].dt_txt);
+    let day2Day = day2.getDay();
+    day2Date.innerText = dayNames[day2Day];                  
     console.log(data.list[8].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[8].main.temp_max);
     Low = Math.round(data.list[8].main.temp_min);
     hnl1.innerText = `↑${High}° ↓${Low}°`;
 
-    day3Date.innerText = data.list[16].dt_txt;
+    let day3 = new Date(data.list[16].dt_txt);
+    let day3Day = day3.getDay();
+    day3Date.innerText = dayNames[day3Day];
     console.log(data.list[16].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[16].main.temp_max);
     Low = Math.round(data.list[16].main.temp_min);
     hnl2.innerText = `↑${High}° ↓${Low}°`;
 
-    day4Date.innerText = data.list[24].dt_txt;
+    let day4 = new Date(data.list[24].dt_txt);
+    let day4Day = day4.getDay();
+    day4Date.innerText = dayNames[day4Day];
     console.log(data.list[24].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[24].main.temp_max);
     Low = Math.round(data.list[24].main.temp_min);
     hnl3.innerText = `↑${High}° ↓${Low}°`;
 
-    day5Date.innerText = data.list[32].dt_txt;
+    let day5 = new Date(data.list[32].dt_txt);
+    let day5Day = day5.getDay();
+    day5Date.innerText = dayNames[day1Day];
     console.log(data.list[32].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[32].main.temp_max);
     Low = Math.round(data.list[32].main.temp_min);
     hnl4.innerText = `↑${High}° ↓${Low}°`;
 
+    console.log(data.list[0].weather[0].description);
 
-    if (data.weather[0].description == "clear sky") {
+    if (data.list[0].weather[0].main == "Clear") {
         weatherIcon1.src = "../assets/sunny.png";
-    } else if (data.weather[0].description == "few clouds") {
-        weatherIcon2.src = "../assets/cloud-sun.png";
-    } else if (data.weather[0].description == "scattered clouds" || data.weather[0].description == "broken clouds") {
-        weatherIcon3.src = "../assets/cloud.png";
-    } else if (data.weather[0].description == "shower rain" || data.weather[0].description == "rain & mist") {
-        weatherIcon4.src = "../assets/cloud-rain.png";
-    } else if (data.weather[0].description == "snow") {
-        weatherIcon5.src = "../assets/cloud-snow.png";
+    } else if (data.list[0].weather[0].main == "Clouds") {
+        weatherIcon1.src = "../assets/cloud-sun.png";
+    } else if (data.list[0].weather[0].main == "scattered clouds" || data.list[0].weather[0].main == "broken clouds" || data.list[0].weather[0].main == "overcast clouds") {
+        weatherIcon1.src = "../assets/cloud.png";
+    } else if (data.list[0].weather[0].main == "Rain" || data.list[0].weather[0].main == "rain & mist") {
+        weatherIcon1.src = "../assets/cloud-rain.png";
+    } else if (data.list[0].weather[0].main == "Snow") {
+        weatherIcon1.src = "../assets/cloud-snow.png";
     }
 
+    if (data.list[8].weather[0].main == "Clear") {
+        weatherIcon2.src = "../assets/sunny.png";
+    } else if (data.list[8].weather[0].main == "Clouds") {
+        weatherIcon2.src = "../assets/cloud-sun.png";
+    } 
+    else if (data.list[8].weather[0].main == "Rain" || data.list[8].weather[0].main == "rain & mist") {
+        weatherIcon2.src = "../assets/cloud-rain.png";
+    } else if (data.list[8].weather[0].main == "Snow") {
+        weatherIcon2.src = "../assets/cloud-snow.png";
+    }
 
-    // if(data.weather[0].description == "clear sky"){
-    //     weatherIcon1.src = "../assets/sunny.png";
-    // }else if (data.weather[0].description == "few clouds"){
-    //     weatherIcon2.src = "../assets/cloud-sun.png";
-    // }else if (data.weather[0].description == "scattered clouds" || data.weather[0].description == "broken clouds"){
-    //     weatherIcon3.src = "../assets/cloud.png";
-    // }else if (data.weather[0].description == "shower rain"|| data.weather[0].description== "rain & mist"){
-    //     weatherIcon4.src ="../assets/cloud-rain.png";
-    // }else if (data.weather[0].description=="snow"){
-    //     weatherIcon5.src ="../assets/cloud-snow.png";
-    // }i
+    if (data.list[16].weather[0].main == "Clear") {
+        weatherIcon3.src = "../assets/sunny.png";
+    } else if (data.list[16].weather[0].main == "Clouds") {
+        weatherIcon3.src = "../assets/cloud-sun.png";
+    } 
+    else if (data.list[16].weather[0].main == "Rain" || data.list[16].weather[0].main == "rain & mist") {
+        weatherIcon3.src = "../assets/cloud-rain.png";
+    } else if (data.list[16].weather[0].main == "Snow") {
+        weatherIcon3.src = "../assets/cloud-snow.png";
+    }
 
+    if (data.list[24].weather[0].main == "Clear") {
+        weatherIcon4.src = "../assets/sunny.png";
+    } else if (data.list[24].weather[0].main == "Clouds") {
+        weatherIcon4.src = "../assets/cloud-sun.png";
+    } 
+    else if (data.list[24].weather[0].main == "Rain" || data.list[24].weather[0].main == "rain & mist") {
+        weatherIcon4.src = "../assets/cloud-rain.png";
+    } else if (data.list[24].weather[0].main == "Snow") {
+        weatherIcon4.src = "../assets/cloud-snow.png";
+    }
 
-
-
+    if (data.list[32].weather[0].main == "Clear") {
+        weatherIcon5.src = "../assets/sunny.png";
+    } else if (data.list[32].weather[0].main == "Clouds") {
+        weatherIcon5.src = "../assets/cloud-sun.png";
+    } 
+    else if (data.list[32].weather[0].main == "Rain" || data.list[32].weather[0].main == "rain & mist") {
+        weatherIcon5.src = "../assets/cloud-rain.png";
+    } else if (data.list[32].weather[0].main == "Snow") {
+        weatherIcon5.src = "../assets/cloud-snow.png";
+    }
 
 }
 // end of five day
