@@ -11,7 +11,11 @@ let lat;
 let lon;
 let cityName;
 
-
+day1Date = document.getElementById("day1Date");
+day2Date = document.getElementById("day2Date");
+day3Date = document.getElementById("day3Date");
+day4Date = document.getElementById("day4Date");
+day5Date = document.getElementById("day5Date");
 
 
 
@@ -92,29 +96,31 @@ async function fiveDay(){
     const promise= await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`);
     const data = await promise.json();
     
+    day1Date.innerText =data.list[0].dt_txt;
     console.log(data.list[0].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[0].main.temp_max);
     Low = Math.round(data.list[0].main.temp_min);
     hnl0.innerText = `↑${High}° ↓${Low}°`;
 
-
+    day2Date.innerText =data.list[8].dt_txt;
     console.log(data.list[8].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[8].main.temp_max);
     Low = Math.round(data.list[8].main.temp_min);
     hnl1.innerText = `↑${High}° ↓${Low}°`;
 
-
+    day3Date.innerText =data.list[16].dt_txt;
     console.log(data.list[16].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[16].main.temp_max);
     Low = Math.round(data.list[16].main.temp_min);
     hnl2.innerText = `↑${High}° ↓${Low}°`;
 
-
+    day4Date.innerText =data.list[24].dt_txt;
     console.log(data.list[24].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[24].main.temp_max);
     Low = Math.round(data.list[24].main.temp_min);
     hnl3.innerText = `↑${High}° ↓${Low}°`;
 
+    day5Date.innerText =data.list[32].dt_txt;
     console.log(data.list[32].main.temp_max, data.list[0].main.temp_min);
     High = Math.round(data.list[32].main.temp_max);
     Low = Math.round(data.list[32].main.temp_min);
@@ -123,13 +129,20 @@ async function fiveDay(){
 }
 // end of five day
 
-// //weather icon
-// if(data.weather[0].description == "clear sky"){
-//     weatherIcon.src = "../assets/sun (1).png";
-// }else if (data.weather[0].description == "few clouds"){
-//     weatherIcon.src = "../assets/cloud-sun.png";
-// }else if (data.weather[0].description == "scattered clouds" || data.weather[0].description == "broken clouds"){
-//     weatherIcon.src = "../assets/cloud.png";
-// }
-// else if (data.weather[0].discr)
+// ICON FOR RIGHT BOX
+if(data.weather[0].description == "clear sky"){
+    weatherIcon1.src = "../assets/sunny.png";
+}else if (data.weather[0].description == "few clouds"){
+    weatherIcon2.src = "../assets/cloud-sun.png";
+}else if (data.weather[0].description == "scattered clouds" || data.weather[0].description == "broken clouds"){
+    weatherIcon3.src = "../assets/cloud.png";
+}else if (data.weather[0].description == "shower rain"|| data.weather[0].description== "rain & mist"){
+    weatherIcon4.src ="../assets/cloud-rain.png";
+}else if (data.weather[0].description=="snow"){
+    weather
+}
 
+
+
+
+//the 

@@ -7,7 +7,7 @@ body{
     border-radius:25px;
     border: 10px solid #A299C8;
     background-color: #120A33 ;
-    padding: 20px;
+    padding-left: 25px;
     width: 551px;
     height: 359px;
 }
@@ -16,8 +16,9 @@ div{
     color: ghostwhite
 }
 #clientSearch{
-justify-content: center;
-width: 453px;
+    margin-top: 1%;
+margin-left: 2%;
+width: 450px;
 height: 45px;
 border-radius: 9px;
 }
@@ -31,23 +32,43 @@ font-size: 80px;
     font-size: 80px;
 }
 #rightBox{
-    justify-content:left;
+margin-left: 60px;
     border-radius:25px;
     border: 10px solid #A299C8;
     background-color: #120A33 ;
     padding: 20px;
-    width: 730px;
+    width: 800px;
     height: 359px;
 }
 #BottomFive{
+    margin-left: 100px;
     border-radius:25px;
-    border: 10px solid #A299C8;
+    align-items: center;
+    border: 10px solid#A299C8;
     background-color: #120A33 ;
     padding: 20px;
-    width: 1320px;
+    width: 1510px;
     height: 540px;
 }
 #displayTemp{
     font-weight: bold;
     font-size: 100px;
+    
 }
+#hnl0, #hnl1, #hnl2, #hnl3, #hnl4{
+    font-size: 50px;
+    padding-top: 200px;
+}
+#starSpace{
+
+justify-content: left;
+}
+#circle { 
+    width: 200px; 
+    height: 200px; 
+    background-color: #395487; 
+    border: 10px solid #395487;
+    border-radius: 50%; 
+    margin: auto; 
+} 
+
