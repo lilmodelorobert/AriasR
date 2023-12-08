@@ -10,7 +10,7 @@ let Low;
 let lat;
 let lon;
 let cityName;
-let currentWeatherIcon = document.getElementById
+
 let dayNames=[];
 
 
@@ -23,7 +23,7 @@ day5Date = document.getElementById("day5Date");
 
 
 //5 day forecast weather icon doms
-let weatherIcon1 = document.getElementById("weatherIcon1");
+let currentWeatherIcon = document.getElementById("currentWeatherIcon");
 
 
 let weatherIcon2 = document.getElementById("weatherIcon2");
@@ -80,9 +80,26 @@ async function searchWeather() {
     displayCountry.innerText = `${data.name}, ${data.sys.country}`;
     // end of visible code
 
-    currentWeatherIcon.src = data.weather[0].main
+    //currentWeatherIcon.src = data.weather[0].main
+    let iconType = data.weather[0].main;
+    //console.log(iconType);
+    if (iconType == "Clear") {
+        currentWeatherIcon.src = "../assets/sunny.png";
+    } else if ( iconType == "Clouds") {
+        currentWeatherIcon.src = "../assets/cloud-sun.png";
+    } else if (iconType == "scattered clouds" || data.list[0].weather[0].main == "broken clouds" || data.list[0].weather[0].main == "overcast clouds") {
+        currentWeatherIcon.src = "../assets/cloud.png";
+    } else if (iconType == "Rain" || data.list[0].weather[0].main == "rain & mist") {
+        currentWeatherIcon.src = "../assets/cloud-rain.png";
+    } else if (iconType == "Snow") {
+        currentWeatherIcon.src = "../assets/cloud-snow.png";
+    }
 
-    currentWeather.innerText = ` ${data.weather[0].description}`;
+
+
+
+    //currentWeather.innerText = ` ${data.weather[0].description}`;
+
     displayTemp.innerText = ` ${Math.round(data.main.temp)}° `;
 
 }

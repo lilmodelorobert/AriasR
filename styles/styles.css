@@ -41,7 +41,7 @@ margin-left: 60px;
     height: 359px;
 }
 #BottomFive{
-    margin-left: 100px;
+    /* margin-left: 100px; */
     border-radius:25px;
     align-items: center;
     border: 10px solid#A299C8;
