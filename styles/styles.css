@@ -57,7 +57,7 @@ margin-left: 60px;
 }
 #hnl0, #hnl1, #hnl2, #hnl3, #hnl4{
     font-size: 50px;
-    padding-top: 200px;
+    padding-top: 50px;
 }
 #starSpace{
 
@@ -73,3 +73,6 @@ padding-left: 400px;
     flex-direction: row; */
 } 
 
+.vl{
+    border-left: 1px solid white;
+}
